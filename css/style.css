@@ -1,0 +1,398 @@
+ :root {
+            --primary-blue: #3b82f6;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            /* make gray a bit brighter for better contrast on dark backgrounds */
+            --text-gray: #cbd5e1;
+            --body-text: #e6eef8;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--body-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Prevent fixed navbar from covering sections when jumping via anchors */
+        section {
+            scroll-margin-top: 90px; /* equal (or slightly larger) than navbar height */
+        }
+        
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* ensure the navbar is fixed and above other content */
+            z-index: 1100;
+        }
+
+        /* Be explicit that fixed-top navbar stays fixed */
+        .navbar.fixed-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .navbar a {
+            color: white !important;
+            margin: 0 1rem;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        /* Nav links: white by default, show border when active */
+        .navbar .nav-link {
+            color: #ffffff !important;
+            padding: 0.35rem 0.6rem;
+            border-radius: 6px;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .navbar .nav-link.active {
+            color: #ffffff !important;
+            border: 1px solid rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.03);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.03) inset;
+        }
+
+        .navbar .nav-link:focus, .navbar .nav-link:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+        }
+        
+        .navbar a:hover {
+            color: var(--primary-blue) !important;
+        }
+
+        /* Ensure nav collapse and nav items are visible on desktop and don't get hidden */
+        @media (min-width: 992px) {
+            .navbar-collapse {
+                display: flex !important;
+                flex-basis: auto;
+            }
+            .navbar-nav {
+                display: flex !important;
+                gap: 0.6rem;
+                align-items: center;
+            }
+            .navbar .nav-link {
+                color: #ffffff !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        }
+        
+        /* preserve white color for active nav links (border will indicate active state) */
+        .navbar a.active {
+            color: #ffffff !important;
+        }
+
+        /* Make the navbar toggler icon visible on dark navbars */
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.12);
+        }
+        .navbar-toggler .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+        
+        .profile-section {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-blue);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            /* ensure the image is centered inside the container */
+            display: block;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-title {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .download-cv {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.7rem 2rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .download-cv:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            color: var(--text-gray);
+        }
+        
+        .contact-item i {
+            color: var(--primary-blue);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 3rem 0 2rem 0;
+            padding-left: 1rem;
+        }
+        
+        .section-title i {
+            margin-right: 1rem;
+            color: var(--primary-blue);
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--primary-blue);
+            margin-left: 1rem;
+        }
+        
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-blue);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        /* Ensure text inside cards is readable */
+        .content-card,
+        .content-card p,
+        .project-info p {
+            color: var(--body-text);
+        }
+        
+        .content-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-blue);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        
+        .skill-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem 1rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-carousel {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.25rem; /* reduced padding for more compact look */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 720px; /* slightly narrower */
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .carousel-slide {
+            display: none;
+            width: 100%;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 280px; /* reduced height */
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Small caption overlay on each slide */
+        .carousel-slide {
+            position: relative;
+        }
+
+        .slide-caption {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--body-text);
+            padding: 0.35rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Project info smaller and compact */
+        .project-info {
+            margin-top: 0.9rem;
+            padding: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        /* Make carousel images smaller on small screens */
+        @media (max-width: 576px) {
+            .carousel-slide img {
+                height: 180px;
+            }
+            .project-carousel {
+                padding: 1rem;
+            }
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .carousel-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .carousel-btn:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .indicator.active {
+            background: var(--primary-blue);
+            width: 30px;
+            border-radius: 5px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .project-info {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+        }
+        
+        .project-info h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
