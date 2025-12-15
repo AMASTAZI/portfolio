@@ -197,3 +197,56 @@ if (document.querySelector('.carousel-slide')) {
                 } catch (e) { /* ignore any issues reading dataset */ }
             });
         })();
+
+        /* Offline skeleton handling */
+        function initOfflineSkeleton() {
+            const skeleton = document.getElementById('skeleton');
+            const retryBtn = document.getElementById('skeleton-retry');
+            if (!skeleton) return;
+
+            function update() {
+                if (navigator.onLine) {
+                    skeleton.setAttribute('aria-hidden', 'true');
+                    skeleton.style.display = 'none';
+                    document.body.classList.remove('is-offline');
+                } else {
+                    skeleton.setAttribute('aria-hidden', 'false');
+                    skeleton.style.display = 'flex';
+                    document.body.classList.add('is-offline');
+                }
+            }
+
+            // initial state
+            update();
+
+            // listen to network changes
+            window.addEventListener('online', () => {
+                update();
+                // optional: reload page to finish loading assets
+                // location.reload();
+            });
+            window.addEventListener('offline', update);
+
+            // retry button: either reload if back online or show short message
+            if (retryBtn) {
+                retryBtn.addEventListener('click', () => {
+                    if (navigator.onLine) {
+                        skeleton.querySelector('.skeleton-status').textContent = 'Reconnecté — actualisation...';
+                        setTimeout(() => location.reload(), 600);
+                    } else {
+                        // try to probe a small resource to detect connectivity
+                        skeleton.querySelector('.skeleton-status').textContent = 'Toujours hors-ligne. Vérifie ta connexion.';
+                        setTimeout(() => {
+                            skeleton.querySelector('.skeleton-status').textContent = 'Pas de connexion — affichage en mode dégradé';
+                        }, 2000);
+                    }
+                });
+            }
+        }
+
+        // initialize offline skeleton on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initOfflineSkeleton);
+        } else {
+            initOfflineSkeleton();
+        }

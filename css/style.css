@@ -429,3 +429,52 @@
             .project-thumb { height: 200px; }
             .gallery-frame { width: 92vw; }
         }
+
+        /* Skeleton (offline / loading placeholder) */
+        .skeleton-overlay[aria-hidden="true"] {
+            display: none;
+        }
+        .skeleton-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(2,6,23,0.9), rgba(2,6,23,0.94));
+            z-index: 1200;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 90px; /* below navbar */
+        }
+        .skeleton-inner {
+            width: min(1000px, 94%);
+            color: #e6eef8;
+        }
+        .skeleton-nav { height: 48px; width: 260px; border-radius: 8px; margin-bottom: 1.5rem; background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02); }
+        .skeleton-profile { display:flex; flex-direction:column; align-items:center; gap:0.8rem; margin-bottom:1.25rem; }
+        .skeleton-avatar { width:140px; height:140px; border-radius:50%; background: rgba(255,255,255,0.04); box-shadow: 0 0 30px rgba(59,130,246,0.09); }
+        .skeleton-line { height:14px; width:80%; border-radius:6px; background: rgba(255,255,255,0.03); }
+        .skeleton-line.short { width:40%; }
+        .skeleton-line.medium { width:60%; }
+        .skeleton-line.long { width:86%; }
+        .skeleton-sections { display:flex; gap:1rem; margin-top:1.25rem; }
+        .skeleton-block { flex:1; height:120px; border-radius:10px; background: rgba(255,255,255,0.02); }
+
+        /* shimmer animation */
+        .skeleton-line, .skeleton-avatar, .skeleton-block, .skeleton-nav {
+            position: relative;
+            overflow: hidden;
+        }
+        .skeleton-line::after, .skeleton-avatar::after, .skeleton-block::after, .skeleton-nav::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -150px; height: 100%; width: 150px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.00), rgba(255,255,255,0.06), rgba(255,255,255,0.00));
+            animation: shimmer 1.4s infinite;
+        }
+        @keyframes shimmer { from { transform: translateX(0); } to { transform: translateX(110%); } }
+
+        .skeleton-status { opacity: 0.9; color: var(--text-gray); font-size: 0.95rem; }
+
+        @media (max-width: 768px) {
+            .skeleton-sections { flex-direction: column; }
+            .skeleton-block { height: 96px; }
+        }

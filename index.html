@@ -15,6 +15,25 @@
     </style>
 </head>
 <body>
+    <!-- Skeleton / offline placeholder (hidden by default) -->
+    <div id="skeleton" class="skeleton-overlay" role="status" aria-live="polite" aria-hidden="true">
+        <div class="skeleton-inner">
+            <div class="skeleton-nav"></div>
+            <div class="skeleton-profile">
+                <div class="skeleton-avatar"></div>
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line medium"></div>
+                <div class="skeleton-line long"></div>
+                <button id="skeleton-retry" class="btn btn-outline-light mt-3">Se reconnecter</button>
+                <div class="skeleton-status mt-2">Pas de connexion — affichage en mode dégradé</div>
+            </div>
+            <div class="skeleton-sections">
+                <div class="skeleton-block"></div>
+                <div class="skeleton-block"></div>
+                <div class="skeleton-block"></div>
+            </div>
+        </div>
+    </div>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <div class="container">
