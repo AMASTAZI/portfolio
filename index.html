@@ -197,47 +197,46 @@
 
         
 
-        <!-- Projets -->
+        <!-- Projets (3-card grid with modal gallery) -->
         <section id="projets" class="container">
             <h2 class="section-title"><i class="fas fa-project-diagram"></i> Projets</h2>
-            
-            <div class="project-carousel">
-                <div class="carousel-container">
-                    <div class="carousel-slide active" data-title="App de mise en relation" data-date="10/10/2025" data-desc="Application mobile et web pour mettre en relation techniciens et clients." data-link="#">
-                        <img src="images/kevin.jpg" alt="Projet 1">
-                        <div class="slide-caption">App de mise en relation</div>
-                    </div>
-                    <div class="carousel-slide" data-title="Site vitrine" data-date="05/06/2024" data-desc="Site vitrine pour une petite entreprise, responsive et optimisé SEO." data-link="#">
-                        <img src="images/kevin.jpg" alt="Projet 2">
-                        <div class="slide-caption">Site vitrine</div>
-                    </div>
-                    <div class="carousel-slide" data-title="Dashboard admin" data-date="12/01/2025" data-desc="Tableau de bord d'administration en Django avec graphiques et filtres." data-link="#">
-                        <img src="images/kevin.jpg" alt="Projet 3">
-                        <div class="slide-caption">Dashboard admin</div>
-                    </div>
-                    <div class="carousel-slide" data-title="API REST" data-date="20/03/2025" data-desc="API RESTful sécurisée avec authentification JWT et tests unitaires." data-link="#">
-                        <img src="images/kevin.jpg" alt="Projet 4">
-                        <div class="slide-caption">API REST</div>
-                    </div>
+
+            <div class="projects-grid row g-3 my-3">
+                <!-- Project card: each has data-images (comma separated) -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="project-card" tabindex="0" role="button" aria-pressed="false" data-title="App de mise en relation" data-desc="Application mobile et web pour mettre en relation techniciens et clients." data-images="images/index.jpeg,images/chatbot.jpg,images/profil.jpeg" data-captions="Page d'accueil pour client, Interface chatbot, Page profil de technicien">
+                        <div class="project-thumb">
+                            <img src="images/index.jpeg" alt="App de mise en relation" loading="lazy">
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">App de mise en relation</h3>
+                            <p class="project-short">Application web pour mettre en relation techniciens et clients.</p>
+                        </div>
+                    </article>
                 </div>
-                
-                <div class="carousel-indicators">
-                    <span class="indicator active" data-slide="0"></span>
-                    <span class="indicator" data-slide="1"></span>
-                    <span class="indicator" data-slide="2"></span>
-                    <span class="indicator" data-slide="3"></span>
-                </div>
-                
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i> Précédent</button>
-                    <button class="carousel-btn" id="nextBtn">Suivant <i class="fas fa-chevron-right"></i></button>
-                </div>
-                
-                <div class="project-info">
-                    <h3>Worked</h3>
-                    <p><i class="fas fa-calendar"></i> Date: 10/10/2025</p>
-                    <p><strong>Description:</strong> Application de mise en relation techniciens-clients</p>
-                    <button class="carousel-btn mt-3"><i class="fas fa-link"></i> Voir le projet</button>
+
+               
+            </div>
+
+            <!-- Modal gallery (Bootstrap) -->
+            <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content bg-transparent border-0">
+                        <div class="modal-body p-0 position-relative">
+                            <button type="button" class="btn-close position-absolute top-0 end-0 m-3 bg-dark" data-bs-dismiss="modal" aria-label="Fermer"></button>
+
+                            <div class="project-gallery d-flex align-items-center justify-content-center">
+                                <button class="gallery-prev btn btn-light btn-lg me-3" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+
+                                <div class="gallery-frame shadow-lg rounded" aria-live="polite">
+                                    <img src="" alt="" class="gallery-img img-fluid rounded">
+                                    <div class="gallery-caption mt-2 text-center text-white"></div>
+                                </div>
+
+                                <button class="gallery-next btn btn-light btn-lg ms-3" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
