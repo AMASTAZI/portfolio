@@ -301,8 +301,8 @@ if (document.querySelector('.carousel-slide')) {
         }
 
 const phrases = [
-        "Je suis développeur fullstack",
-        "I am a fullstack developer"
+        "Je suis développeur fullstack django",
+        "I am a fullstack developer django"
     ];
 
     let phraseIndex = 0;
