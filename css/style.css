@@ -5,6 +5,7 @@
             /* make gray a bit brighter for better contrast on dark backgrounds */
             --text-gray: #cbd5e1;
             --body-text: #e6eef8;
+            --white: #f8f8f9;
         }
         
         body {
@@ -66,6 +67,27 @@
         .navbar a:hover {
             color: var(--primary-blue) !important;
         }
+
+        /* Theme toggle button (small circular icon in navbar) */
+        .btn-theme {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.18s, color 0.18s, transform 0.12s;
+        }
+        .btn-theme { z-index: 1300; }
+        .btn-theme { background: rgba(255,255,255,0.02); }
+        .btn-theme i { display:block; }
+        .btn-theme:focus { outline: none; box-shadow: 0 0 0 4px rgba(59,130,246,0.12); }
+        .btn-theme:hover { transform: translateY(-2px); }
+        .btn-theme .fa-sun, .btn-theme .fa-moon { font-size: 1rem; }
 
         /* Ensure nav collapse and nav items are visible on desktop and don't get hidden */
         @media (min-width: 992px) {
@@ -165,8 +187,12 @@
         }
         
         .contact-item a {
-            color: var(--primary-blue);
+            color: var(--white);
             text-decoration: none;
+        }
+        .contact-item a:hover {
+            text-decoration: none;
+            color: var(--primary-blue);
         }
         
         .section-title {
@@ -478,3 +504,37 @@
             .skeleton-sections { flex-direction: column; }
             .skeleton-block { height: 96px; }
         }
+
+        /* Light theme overrides */
+        .light-theme {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            color: #0f172a;
+        }
+        .light-theme .navbar {
+            background: rgba(255,255,255,0.98);
+            color: #0f172a;
+        }
+        .light-theme .navbar a { color: #0f172a !important; }
+        .light-theme .navbar-toggler .navbar-toggler-icon { background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%230f172a' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
+
+        .light-theme .content-card,
+        .light-theme .contact-card,
+        .light-theme .project-card,
+        .light-theme .project-info,
+        .light-theme .gallery-frame {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 6px 20px rgba(15,23,42,0.06);
+        }
+        .light-theme .section-title::after { background: var(--primary-blue); }
+        .light-theme .section-title i { color: var(--primary-blue); }
+        .light-theme .project-short { color: #4b5563; }
+        .light-theme .skeleton-overlay { background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.98)); }
+        .light-theme .skeleton-nav,
+        .light-theme .skeleton-block,
+        .light-theme .skeleton-line,
+        .light-theme .skeleton-avatar { background: rgba(15,23,42,0.04); }
+        .light-theme .skeleton-status { color: #374151; }
+
+        /* Ensure theme button is visible on light background */
+        .light-theme .btn-theme { color: #0f172a; border-color: rgba(15,23,42,0.06); }
